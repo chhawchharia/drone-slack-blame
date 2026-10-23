@@ -12,7 +12,7 @@ pool:
 steps:
   - name: vet
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - go vet ./...
     environment:
@@ -23,7 +23,7 @@ steps:
 
   - name: test
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - go test -cover ./...
     environment:
@@ -56,7 +56,7 @@ pool:
 steps:
   - name: build-push
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_COMMIT_SHA:0:8}" -a -tags netgo -o release/linux/amd64/drone-slack-blame'
     environment:
@@ -69,7 +69,7 @@ steps:
 
   - name: build-tag
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v}" -a -tags netgo -o release/linux/amd64/drone-slack-blame'
     environment:
@@ -81,7 +81,7 @@ steps:
 
   - name: executable
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - ./release/linux/amd64/drone-slack-blame --help
 
@@ -126,7 +126,7 @@ pool:
 steps:
   - name: build-push
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_COMMIT_SHA:0:8}" -a -tags netgo -o release/linux/arm64/drone-slack-blame'
     environment:
@@ -139,7 +139,7 @@ steps:
 
   - name: build-tag
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - 'go build -v -ldflags "-X main.version=${DRONE_TAG##v}" -a -tags netgo -o release/linux/arm64/drone-slack-blame'
     environment:
@@ -151,7 +151,7 @@ steps:
 
   - name: executable
     pull: always
-    image: golang:1.19
+    image: harness0.harness.io/oci/docker_artifacts/hhi/go:1.26.10
     commands:
       - ./release/linux/arm64/drone-slack-blame --help
 
@@ -196,7 +196,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.26.10
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -204,7 +204,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.26.10
     environment:
       CGO_ENABLED: "0"
     commands:
@@ -248,7 +248,7 @@ pool:
 
 steps:
   - name: environment
-    image: golang:1.19
+    image: golang:1.26.10
     pull: always
     environment:
       CGO_ENABLED: "0"
@@ -256,7 +256,7 @@ steps:
       - go version
       - go env
   - name: build
-    image: golang:1.19
+    image: golang:1.26.10
     environment:
       CGO_ENABLED: "0"
     commands:
