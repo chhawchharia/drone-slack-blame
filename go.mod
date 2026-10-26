@@ -26,6 +26,4 @@ require (
 	golang.org/x/sys v0.0.0-20220715151400-c0bba94af5f8 // indirect
 )
 
-go 1.19
-
-toolchain go1.26.10
+go 1.26.10
