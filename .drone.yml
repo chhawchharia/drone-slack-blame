@@ -89,8 +89,6 @@ steps:
     pull: always
     image: plugins/docker:linux-amd64
     settings:
-      pull_image: true
-      no_cache: true
       auto_tag: true
       auto_tag_suffix: linux-amd64
       daemon_off: false
@@ -161,8 +159,6 @@ steps:
     pull: always
     image: plugins/docker:linux-arm64
     settings:
-      pull_image: true
-      no_cache: true
       auto_tag: true
       auto_tag_suffix: linux-arm64
       daemon_off: false
@@ -218,8 +214,6 @@ steps:
   - name: docker
     image: plugins/docker
     settings:
-      pull_image: true
-      no_cache: true
       dockerfile: docker/Dockerfile.windows.1809
       repo: plugins/slack-blame
       username:
@@ -261,7 +255,6 @@ steps:
     environment:
       CGO_ENABLED: "0"
     commands:
-      - . ./scripts/setup-go-windows.ps1
       - go version
       - go env
   - name: build
@@ -269,13 +262,10 @@ steps:
     environment:
       CGO_ENABLED: "0"
     commands:
-      - . ./scripts/setup-go-windows.ps1
       - go build -v -ldflags "-X main.version=" -a -tags netgo -o release/windows/amd64/drone-slack-blame.exe .
   - name: docker
     image: plugins/docker
     settings:
-      pull_image: true
-      no_cache: true
       dockerfile: docker/Dockerfile.windows.ltsc2022
       repo: plugins/slack-blame
       username:
